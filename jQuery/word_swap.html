@@ -1,0 +1,105 @@
+<html>
+    <head>
+        <title>jQuery String Swap by John Morgan</title>
+        
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js" type="text/javascript"></script>
+        
+        <script type="text/javascript">
+            $(document).ready(function() {
+             ///////////////////////////////////////////////////////////////////////////////
+             // Three variables one for the origianl text, the swapped text, and then one
+             // bool for content is displayed or not displayed.
+             ///////////////////////////////////////////////////////////////////////////////
+             var data_to_swap = "";
+             var data_swapped = "";
+             var displayed = false;
+             
+             
+             ///////////////////////////////////////////////////////////////////////////////
+             // Start i at the end of the string to be swapped, concatenate every character
+             // in the word starting from the end to the new empty string that will now
+             // hold the swapped data. Then print that to the screen. Set displayed to true.
+             ///////////////////////////////////////////////////////////////////////////////
+                $("#swap_button").click(function() {
+                    data_to_swap = $("input").val();
+                    
+                    for (var i = data_to_swap.length; i >= 0; i-- )
+                    {
+                        data_swapped = data_swapped.concat(data_to_swap.charAt(i));
+                    }
+                 
+                    $("h3").html( "Swapped text: \"" + data_to_swap + "\" to \"" + data_swapped + "\"" );
+                    displayed = true;
+                });
+                
+                
+                ///////////////////////////////////////////////////////////////////////////////
+                // Clear the displayed content, input field, and data swapping variables.
+                // Set displayed to false.
+                ///////////////////////////////////////////////////////////////////////////////
+                $("#clear_button").click(function() {
+                        $("h3").html( "" );
+                        $("input").val('');  
+                        displayed = false;
+                        data_to_swap = "";
+                        data_swapped = ""; 
+                });
+            });   
+        </script>
+        
+        
+        <style type="text/css">
+            h2,
+            h3 {
+                font-size: 40px;
+                font-family: Helvetica Neue, Helvetica, Arial;
+                font-weight: 100;
+            }
+            
+            input {
+                width: 300px;
+                height: 50px;
+                margin-right: 10px;
+                font-size: 30px;
+                font-family: Helvetica Neue, Helvetica, Arial;
+                font-weight: 300;
+                padding: 0px 0px 0px 15px;
+                white-space: nowrap;
+            }
+            
+            #swap_button {
+                width: 200px;
+                height: 50px;
+                font-size: 30px;
+                font-family: Helvetica Neue, Helvetica, Arial;
+                font-weight: 400;
+                background: #2ab573;
+                border: none;
+                white-space: nowrap;
+            }
+            #clear_button {
+                width: 200px;
+                height: 50px;
+                font-size: 30px;
+                font-family: Helvetica Neue, Helvetica, Arial;
+                font-weight: 300;
+                background: #ff6666;
+                border: none;
+                white-space: nowrap;
+            }
+        </style>
+    </head>
+
+    <body>
+        <h2>Enter text to swap</h2>
+        
+        <form>
+            <input type="text">
+            <button type="button" id="swap_button"> Swap </button>
+            <button type="button" id="clear_button"> Clear </button>
+        </form>
+        <hr />
+
+        <h3></h3> <!-- Displays swapped content inside -->
+    </body>
+</html>

@@ -1,0 +1,99 @@
+<!doctype html>
+<html ng-app>
+  <head>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.1/angular.min.js"></script>
+    <script type="text/javascript">
+      function groceryList($scope) {
+        $scope.items = [ ];
+      
+      ///////////////////////////////////////////////////////////////////////////////
+      // Loop through items and save the items that are not done to a new items array
+      /////////////////////////////////////////////////////////////////////////////// 
+      $scope.clear = function() {
+          var clear_item = $scope.items;
+          $scope.items = [ ];
+      
+          angular.forEach(clear_item, function(item) {
+            if (!item.done)
+              $scope.items.push(item);
+          });
+      };
+         ///////////////////////////////////////////////////////////////////////////////
+         // Add the form entry to the grocry list. Set form to empty for next entry.
+         ///////////////////////////////////////////////////////////////////////////////
+        $scope.addItem = function() {
+          $scope.items.push({text:$scope.formGroceryList, done: false});
+          $scope.formGroceryList = '';
+        };
+      }
+    </script>
+    
+    <style type="text/css">
+      .done-true {
+        text-decoration: line-through;
+        color: #ff6666; 
+      }
+        h2,
+        h3,
+        li{
+            font-size: 30px;
+            font-family: Helvetica Neue, Helvetica, Arial;
+            font-weight: 100;
+            list-style:  none;
+        }
+        input {
+            width: 298px;
+            height: 50px;
+            margin-right: 10px;
+            font-size: 30px;
+            font-family: Helvetica Neue, Helvetica, Arial;
+            font-weight: 300;
+            padding: 0px 0px 0px 15px;
+            white-space: nowrap;
+            margin-bottom: 10px;
+        }
+        .checkbox {
+          width: 25px;
+        }
+        .add_button {
+            width: 150px;
+            height: 50px;
+            font-size: 30px;
+            font-family: Helvetica Neue, Helvetica, Arial;
+            font-weight: 400;
+            background: #2ab573;
+            border: none;
+            margin-right: 15px;
+            white-space: nowrap;
+        }
+        .clear_button {
+            width: 150px;
+            height: 50px;
+            font-size: 30px;
+            font-family: Helvetica Neue, Helvetica, Arial;
+            font-weight: 300;
+            background: #ff6666;
+            border: none;
+            white-space: nowrap;
+        }
+    </style>
+    
+  </head>
+  
+  <body>
+    <div ng-controller="groceryList">
+      <ul> 
+        <li ng-repeat="item in items">
+          <input type="checkbox" ng-model="item.done" class="checkbox">
+            <span class="done-{{item.done}}"> {{item.text}}</span>
+        </li>
+      </ul>
+      
+      <form>
+        <input type="text" ng-model="formGroceryList" ng-model-instant> <br />
+        <button ng-click="addItem()" class="add_button">add</button>
+        <button ng-click="clear()" class="clear_button">Clear</button>
+      </form>
+    </div>
+  </body>
+</html>

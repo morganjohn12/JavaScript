@@ -1,0 +1,108 @@
+<html>
+    <head>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js" type="text/javascript"></script>
+        <script type="text/javascript">
+        $(document).ready(function() {
+                var content_displayed = false;
+                var alert_one_shown = false;
+                var alert_two_shown = false;
+                var $alert_one = $('.alert1'); 
+                var $alert_two = $('.alert2');
+        
+                /////////////////////////////////////////////////////////
+                ///////////////////  Scholarships ///////////////////////
+                /////////////////////////////////////////////////////////
+                $('#showFAFSA').click(function() {
+                    // On click hide the content that is currently displayed
+                    if (content_displayed == true) { // hide the scholarship content
+                        if (alert_one_shown == true) {
+                                $alert_one.hide();
+                                content_displayed = false;
+                                alert_one_shown = false;
+                        }
+                        else if (alert_two_shown == true) { // fafsa content is displayed, hide it
+                            $alert_two.hide();
+                            $alert_one.show()
+                            
+                            content_displayed = true;
+                            alert_one_shown = true;
+                            alert_two_shown = false;
+                        }
+                    }
+                    else { // Slide in the content
+                        $alert_one.show()
+                        content_displayed = true;
+                        alert_one_shown = true;	
+                    }
+                });
+                
+                
+                /////////////////////////////////////////////////////////
+                ///////////////////  FAFSA //////////////////////////////
+                /////////////////////////////////////////////////////////
+                $('#showSchol').click(function() { 
+                   // On click hide the content that is currently displayed
+                    if (content_displayed == true) { // hide the fafsa content
+                        if (alert_two_shown == true) {
+                                $alert_two.hide();
+                                content_displayed = false;
+                                alert_two_shown = false;
+                        }
+                        else if (alert_one_shown == true) { // hide the scholarship content
+                            $alert_one.hide();
+                            $alert_two.show()
+                            
+                            content_displayed = true;
+                            alert_two_shown = true;
+                            alert_one_shown = false;
+                        }
+                    }
+                    else { // Slide in the content
+                        $alert_two.show()
+                        content_displayed = true;
+                        alert_two_shown = true;	
+                    }
+                });
+            });
+        </script>
+        
+        <style>
+        .alert1,
+        .alert2 {
+            margin-top: 5px;
+            width: 230px;
+            font-size:20px;
+            font-family: Helvetica Neue, Helvetica, Arial;
+            font-weight: 300;
+            color:#484848;
+            border-radius:5px;
+            padding: 10px;
+            background-color: #f2f2f2;
+            display: none;
+        }
+        
+        #showFAFSA,
+        #showSchol {
+            padding: 5% 5% 5% 5%;
+            width: 175px;
+            text-align: center;
+            border-radius:5px;
+            background: #6B238E;
+            color: white;
+            font-size: 25px;
+            font-family: Helvetica Neue, Helvetica, Arial;
+            font-weight: 300; 
+        }
+        </style>
+    </head>
+    
+    <body>
+        <p style="font-family: sans-serif"> This is a simple show / hide jQuery script that I wrote last week at work.</p>
+        <hr />
+        <p id="showFAFSA">Scholarships</p>
+        <div class="alert1" > Don't miss out on scholarships! </div>
+        
+        <p id="showSchol">Federal Aid</p>
+        <div class="alert2"> Don't wait! Complete the FAFSA by April 15th  </div>
+    </body>
+</html>
